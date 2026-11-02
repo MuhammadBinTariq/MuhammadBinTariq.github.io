@@ -1,0 +1,30 @@
+---
+interface Props {
+ item: { n:string; title:string; kind:string; credit:string; text:string; tags:string; figure:string; url?:string };
+}
+const {item:p}=Astro.props;
+---
+<article class="project">
+ <div class="project-figure" data-figure={p.figure} aria-hidden="true">
+  <svg viewBox="0 0 220 135">
+   <g class="grid-lines"><path d="M20 20V115H205 M20 65H205 M70 20V115 M120 20V115 M170 20V115"/></g>
+   {p.figure==='grokking' ? <>
+    <path class="plot-muted" d="M20 30C50 25 60 100 95 103S180 106 205 107"/><path class="plot" d="M20 25C70 23 110 29 133 35S149 101 170 105L205 106"/>
+   </> : p.figure==='geometry' ? <>
+    {[0,1,2,3,4].map(i=><ellipse class="plot" cx="110" cy="67" rx={24+i*14} ry={8+i*7} transform={`rotate(-28 110 67)`}/>)}<path class="plot-amber" d="M32 97Q70 10 113 68T194 34"/>
+   </> : p.figure==='biology' ? <>
+    <path class="plot" d="M28 32C68 32 68 100 110 100S153 32 194 32"/><path class="plot-muted" d="M28 100C68 100 68 32 110 32S153 100 194 100"/>
+    {[0,1,2,3,4,5,6].map(i=><path class="plot-muted" d={`M${35+i*24} ${66-30*Math.cos(i*.9)}V${66+30*Math.cos(i*.9)}`}/>)}
+    <circle cx="84" cy="58" r="5" fill="currentColor"/><circle cx="153" cy="51" r="5" fill="currentColor"/>
+   </> : p.figure==='vision' ? <>
+    {[0,1,2,3].map(i=>[0,1,2,3].map(j=><rect x={30+i*19} y={30+j*19} width="14" height="14" class="visual-token" opacity={0.15+(i+j)%4*0.18}/>))}
+    <path class="plot-amber" d="M115 66H145m-6-6 6 6-6 6"/><path class="plot" d="M158 37H198M158 52H185M158 67H198M158 82H180M158 97H192"/>
+   </> : p.figure==='driving' ? <>
+    <path class="plot" d="M64 115Q100 75 70 20M150 115Q186 75 156 20"/><path class="plot-muted" stroke-dasharray="5 7" d="M107 115Q143 75 113 20"/><rect x="106" y="70" width="14" height="23" rx="3" fill="currentColor"/>
+   </> : <>
+    <path class="plot" d="M20 104L30 93 40 98 50 75 60 83 70 60 80 72 90 45 100 57 110 39 120 47 130 30 140 40 150 24 160 30 170 24 180 27 195 22"/><path class="plot-amber" d="M20 104Q70 67 110 50T195 22"/>
+   </>}
+  </svg><span>FIG. {p.n} / SCHEMATIC</span>
+ </div>
+ <div class="project-copy"><span class="small-label">{p.kind}</span><p class="project-credit">{p.credit}</p><h3>{p.title}</h3><p>{p.text}</p><div class="project-footer"><span>{p.tags}</span>{p.url&&<a href={p.url} target="_blank" rel="noopener">Code ↗</a>}</div></div>
+</article>

@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import WorkItem from '../components/WorkItem.astro';
+import {research,projects} from '../data/work';
+const epochs=[['mentors','Mentors'],['research','Research'],['projects','Projects'],['about','About']];
+---
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Muhammad Bin Tariq — computer science and mathematics at LUMS. Research, projects, mentors, and teaching."/>
+  <meta name="theme-color" content="#ffffff"/><title>Muhammad Bin Tariq · Research</title>
+  <script is:inline>
+   (()=>{let theme;try{theme=localStorage.getItem('portfolio-theme');}catch{}if(theme!=='light'&&theme!=='dark')theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=theme;document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#293241':'#ffffff';})();
+  </script>
+  <meta property="og:title" content="Muhammad Bin Tariq · Research"/><meta property="og:description" content="How do models learn, reason, and represent ideas?"/><meta property="og:type" content="website"/>
+  <link rel="preload" href="/fonts/SpaceMono-Bold.ttf" as="font" type="font/ttf" crossorigin/><link rel="preload" href="/fonts/SpaceMono-Regular.ttf" as="font" type="font/ttf" crossorigin/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+ </head>
+ <body>
+  <a class="skip" href="#mentors">Skip to content</a>
+  <header>
+   <a class="wordmark" href="#top" aria-label="Muhammad Bin Tariq, home">mbt<span>.</span></a>
+   <nav aria-label="Main navigation">{epochs.map(([id,label],i)=><a href={`#${id}`} class={i===0?'active':undefined}>{label}</a>)}</nav>
+   <a class="cv-top" href="/Muhammad-Bin-Tariq-CV.pdf" target="_blank" rel="noopener">CV <span>↗</span></a>
+   <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.4A8.5 8.5 0 0 1 9.6 4a8.5 8.5 0 1 0 10.4 10.4Z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
+  </header>
+  <div class="identity" id="top">
+   <div class="identity-copy">
+    <p class="eyebrow">COMPUTER SCIENCE × MATHEMATICS · LUMS</p>
+    <h1>Muhammad Bin Tariq<span class="name-cursor" aria-hidden="true">|</span></h1>
+    <p class="identity-intro">BS Computer Science · Minor in Mathematics · <a href="https://sbasse.lums.edu.pk/" target="_blank" rel="noopener">SBASSE, LUMS</a></p>
+    <div class="identity-links"><a href="mailto:tariqmbin@gmail.com">email ↗</a><a href="/Muhammad-Bin-Tariq-CV.pdf" target="_blank" rel="noopener">cv ↗</a><a href="https://github.com/MuhammadBinTariq" target="_blank" rel="noopener">github ↗</a></div>
+   </div>
+   <div class="intro-copy">
+    <p>I am a final-year computer science undergraduate, pursuing a minor in mathematics at <a href="https://sbasse.lums.edu.pk/" target="_blank" rel="noopener">SBASSE, LUMS</a>. Currently, I am working with <a href="https://city.lums.edu.pk/members/muhammad_tahir/index.html" target="_blank" rel="noopener">Dr. Muhammad Tahir</a> at <a href="https://city.lums.edu.pk/" target="_blank" rel="noopener">CITY at LUMS</a>.</p>
+    <p>My research is driven by the fundamental question of how models <strong>learn, reason, and represent ideas</strong>.</p>
+    <p>I love reading fiction, playing futsal, and vibing to music.</p>
+   </div>
+   <figure class="portrait"><img src="/headshot.jpeg" width="460" height="460" alt="Muhammad Bin Tariq" fetchpriority="high"/></figure>
+  </div>
+  <main class="layout">
+   <aside class="landscape-panel" aria-label="Interactive research landscape">
+    <div class="landscape-inner">
+     <div class="eyebrow"><span class="status-dot"></span> A RESEARCH TRAJECTORY <span class="epoch-readout" id="epoch-readout">epoch 1 / 4</span></div>
+     <canvas id="landscape" aria-label="Illustrative loss landscape. A ball follows your reading progress through four valleys." role="img"></canvas>
+     <div class="landscape-caption"><span>curiosity is the optimizer.</span><span class="coordinate" aria-hidden="true">θ <span id="theta">0.00</span></span></div>
+     <div class="landscape-stops" aria-label="Research epochs">{epochs.map(([id,label],i)=><a href={`#${id}`} class={i===0?'active':undefined}><span>epoch {i+1}</span> {label}</a>)}</div>
+     <div class="training-readout" aria-hidden="true"><span>step <span id="step-value">0</span></span><span>loss <span id="loss-value">0.72</span></span></div>
+     <div class="landscape-bottom"><span>SCROLL TO EXPLORE</span><span>↓</span></div><p class="illustration-note">An illustrative landscape and loss curve, guided by your scroll.</p>
+    </div>
+   </aside>
+   <div class="content">
+    <section id="mentors" data-epoch="1" class="mentors">
+     <div class="eyebrow"><span class="epoch-label">epoch 1 / 4</span> MENTORSHIP</div>
+     <h2>mentors i’m grateful for</h2>
+     <ul>
+      <li><a href="https://city.lums.edu.pk/members/muhammad_tahir/index.html" target="_blank" rel="noopener">Dr. Muhammad Tahir <span aria-hidden="true">↗</span></a><span class="mentor-affiliation">Electrical Engineering · CITY, LUMS</span><p>For helping me learn how to develop a research idea through reading, discussion, and revisiting directions that did not work. His guidance has shaped my growth as a researcher.</p></li>
+      <li><a href="https://sites.google.com/view/imrananwar/home" target="_blank" rel="noopener">Dr. Imran Anwar <span aria-hidden="true">↗</span></a><span class="mentor-affiliation">Mathematics · LUMS</span><p>For the opportunity to develop guided linear algebra exercises together, connecting geometry with algorithms and combinatorics. Our weekly discussions helped me think more carefully about how to make mathematical ideas accessible.</p></li>
+     </ul>
+    </section>
+    <section id="research" data-epoch="2">
+     <div class="eyebrow"><span class="epoch-label">epoch 2 / 4</span> RESEARCH</div><h2>Research<span>.</span></h2>
+     <div class="projects research-work">{research.map(item=><WorkItem item={item}/>)}</div>
+    </section>
+    <section id="projects" data-epoch="3">
+     <div class="eyebrow"><span class="epoch-label">epoch 3 / 4</span> PROJECTS</div><h2>Selected projects<span>.</span></h2>
+     <div class="projects">{projects.map(item=><WorkItem item={item}/>)}</div>
+    </section>
+    <section id="about" data-epoch="4">
+     <div class="eyebrow"><span class="epoch-label">epoch 4 / 4</span> ABOUT</div><h2>About me<span>.</span></h2>
+     <div class="about-body">
+      <p>Driven by a passion for mathematics and understanding our physical reality, I choose to work at intersections. Fundamental questions like, "how do we learn and reason about the world around us?" drive my research interests.</p>
+      <p>When it comes to learning, I genuinely love it when the ideas start clicking and flowing from one discipline or course to another, such as seeing how Cauchy sequences from Real Analysis popped up in α-discounted Bellman equations within Dynamic Programming. This also happens when teaching others; having supported graduate students as a teaching assistant in Mathematics for AI, and revamped the Linear Algebra Honors course at LUMS as a Pedagogical Student Partner (an opportunity that introduced me to Jiří Matoušek’s <a href="https://www.ams.org/books/stml/053/stml053-endmatter.pdf" target="_blank" rel="noopener"><em>Thirty-three Miniatures</em></a>).</p>
+      <p>Away from the terminal, I spend my time on the futsal court, catching up with friends, or diving into fantasy novels and webtoons - recently Ursula K. Le Guin’s <em>A Wizard of Earthsea</em> and <em>Omniscient Reader's Viewpoint</em>.</p>
+     </div>
+     <div class="about-facts">
+      <div><span class="small-label">EDUCATION</span><strong>BS Computer Science</strong><span>Minor in Mathematics · LUMS</span><span>2023–2027 · cGPA 3.98/4.00</span></div>
+      <div><span class="small-label">RECOGNITION</span><strong>Full Merit Scholarship</strong><span>Dean’s Honor List</span><span>Top 1% · BS Class of 2027</span></div>
+      <div><span class="small-label">TEACHING & COURSE DESIGN</span><strong>Pedagogical Student Partner</strong><span>Linear Algebra Honors · 2025</span><span>Teaching Assistant · Mathematics for AI</span></div>
+     </div>
+     <div class="coursework"><h3>Selected coursework</h3><ul><li>Advanced Topics in Machine Learning</li><li>Dynamic Programming and Reinforcement Learning</li><li>Deep Vision-Language Models</li><li>Deep Learning for Space Time and Graphs</li><li>Applied Probability</li><li>Real Analysis · Algebra</li></ul></div>
+     <div class="inline-links about-links"><a href="/Muhammad-Bin-Tariq-CV.pdf" download>Download CV ↓</a><a href="https://github.com/MuhammadBinTariq" target="_blank" rel="noopener">GitHub ↗</a><a href="mailto:tariqmbin@gmail.com">Email ↗</a></div>
+    </section>
+    <footer><span>© {new Date().getFullYear()} Muhammad Bin Tariq</span><a href="#top">Back to the start ↑</a><span class="design-credit">Design and website format inspired by <a href="https://jaydenteoh.github.io/" target="_blank" rel="noopener">Jayden Teoh’s website</a>.</span></footer>
+   </div>
+  </main>
+  <div class="loss-rail" aria-hidden="true"><span class="rail-label">loss</span><svg viewBox="0 0 60 500" preserveAspectRatio="none"><defs><clipPath id="loss-reveal"><rect id="loss-clip" x="0" y="0" width="60" height="0"/></clipPath></defs><path class="rail-axis" d="M12 0V500M9 0H15M9 250H15M9 500H15"/><path id="loss-trace" class="rail-ghost"/><path id="loss-progress" clip-path="url(#loss-reveal)"/><circle id="loss-dot" cx="36" cy="0" r="3.2"/></svg><span class="rail-end">step ↓</span></div>
+  <div class="pointer-accent" aria-hidden="true"></div>
+  <script src="../scripts/landscape.ts"></script>
+  <script src="../scripts/interactions.ts"></script>
+ </body>
+</html>
