@@ -46,6 +46,8 @@ The supplied Elegance palette is used for light mode (white, black, navy, gray, 
 
 `src/scripts/interactions.ts` handles the theme and decorative pointer accent. The native cursor stays visible. The dot uses time-based smoothing and becomes a thin ring over links and buttons. It is disabled for touch/coarse pointers and reduced-motion preferences.
 
+The heading types and erases “Muhammad Bin Tariq”, “ML Researcher”, and “Aspiring AI Scientist” in sequence, holding each completed phrase for two seconds. A reserved heading footprint prevents layout shifts. Reduced-motion preferences show the name statically. Academic highlights are placed beside the heading and above the portrait, with a stacked layout on mobile.
+
 The ball starts at the first outer ridge when the page is at the top, reaches each valley at its section anchor, and travels from the About valley to the far edge during the remaining scroll. The final landscape position is reached only at the page bottom; scrolling upward reverses the same route.
 
 The site has no analytics, tracking, contact backend, or account requirements in its source. Hosting access controls are configured separately. Reduced-motion preferences disable interpolated animation and smooth scrolling.

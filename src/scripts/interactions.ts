@@ -50,3 +50,30 @@ document.documentElement.addEventListener('pointerleave',hide);
 window.addEventListener('blur',hide);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)hide();});
 finePointer.addEventListener('change',hide);reduceMotion.addEventListener('change',hide);
+
+// Keep one stable accessible heading while the visual title cycles.
+const titleText=document.querySelector<HTMLElement>('#typewriter-text')!;
+const titles=['Muhammad Bin Tariq','ML Researcher','Aspiring AI Scientist'];
+let titleIndex=0,letterIndex=0,erasing=false,titleTimer=0;
+function scheduleTitle(delay:number){titleTimer=window.setTimeout(typeTitle,delay);}
+function typeTitle(){
+ const phrase=titles[titleIndex];
+ letterIndex+=erasing?-1:1;
+ titleText.textContent=phrase.slice(0,letterIndex);
+ if(!erasing&&letterIndex===phrase.length){erasing=true;scheduleTitle(2000);}
+ else if(erasing&&letterIndex===0){titleIndex=(titleIndex+1)%titles.length;erasing=false;scheduleTitle(220);}
+ else scheduleTitle(erasing?45:85);
+}
+function resetTitle(){
+ clearTimeout(titleTimer);titleIndex=0;letterIndex=0;erasing=false;
+ titleText.textContent=reduceMotion.matches?titles[0]:'';
+ if(!reduceMotion.matches&&!document.hidden)scheduleTitle(180);
+}
+document.addEventListener('visibilitychange',()=>{
+ clearTimeout(titleTimer);
+ if(!document.hidden&&!reduceMotion.matches)scheduleTitle(erasing&&letterIndex===titles[titleIndex].length?2000:85);
+});
+reduceMotion.addEventListener('change',resetTitle);
+window.addEventListener('pagehide',()=>clearTimeout(titleTimer));
+window.addEventListener('pageshow',event=>{if(event.persisted)resetTitle();});
+resetTitle();
